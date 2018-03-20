@@ -1,0 +1,672 @@
+
+
+<!DOCTYPE html>
+<html >
+<head><meta charset="UTF-8">
+		<title>L1 Support Bot</title>
+
+		<link rel="stylesheet" href="/static/css/normalize.css">
+                
+		<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+		<link rel='stylesheet prefetch' href='/static/js/jquery.mCustomScrollbar.min.css'>
+		<link rel="stylesheet" href="/static/css/style.css">
+		<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+		<script src="/static/js/jquery-latest.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<style>
+audio{
+  display: none;
+}
+
+		
+		.spinner {
+		 
+  margin: 30px auto 0;
+  width: 70px;
+  text-align: center;
+  
+}
+
+.spinner > div {
+  width: 10px;
+  height: 10px;
+   background-color: #1976D2;
+    white-space: nowrap;
+	overflow:hidden !important;
+text-overflow: ellipsis;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+		
+		
+		
+		
+	body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.overlay {
+    height: 0%;
+	max-height:200px;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 130px;
+	
+	right:75px;
+	bottom: 50px;
+	position: center;
+  background-color: #FAFAFA;
+  
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 10px;
+	right : 10px;
+    font-size: 20px;
+}
+
+.overlay1 {
+    height: 0%;
+	max-height:200px;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 130px;
+	right:75px;
+	bottom: 50px;
+	position: center;
+    background-color: #EEEEEE;
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay1 a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay1 a:hover, .overlay1 a:focus {
+    color: #f1f1f1;
+}
+
+.overlay1 .closebtn1 {
+    position: absolute;
+    top: 10px;
+	right : 10px;
+    font-size: 20px;
+}
+
+.overlay1-content h5 {
+    position: relative;
+    top:40px;
+    width: 100%;
+	padding-left:38px;
+	color:#818181;
+    font-size: 15px; 
+}
+
+.overlay1-content h6 {
+    position: relative;
+    top:23px;
+    width: 100%;
+    padding-left:32px;
+    font-size: 12px;
+    color:black;
+}
+
+<!-- .overlay1-content .callaccept{
+    position: relative;
+    top:20px;
+	left:2px; 
+	padding-left:10px;
+}-->
+<!-- 
+.overlay1-content .calldecline{
+    position: relative;
+	left:10px; 
+   
+}  -->
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+		
+		
+		
+		
+		
+.select-style {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    width: 80px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #D9D0F0;
+    color: #0E110F;
+
+}
+
+.select-style select {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    padding: 5px 9px;
+    width: 80%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.image-upload > input
+{     border:0;
+     background:none;
+    display: none;
+}
+.image-upload > form
+{     border:0;
+     background:none;
+    display: none;
+}
+button{
+     border:0;
+     background:none;
+     /*And other css to remove the default button property */    
+}
+.bloc1, .bloc2,.send
+{
+    display:inline;
+}
+
+#Footer
+    {
+        width: 100%;
+        height: 40px;
+        padding: 1px;
+        -moz-border-radius: 35px;
+        border-radius: 35px;
+        color: #061544
+        position: fixed;
+        bottom: 0;
+        text-align: right;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .chat-title .avatar {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 9px;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #546E7A;<!-- rgba(255, 255, 255, 0.24) -->
+  }
+.chat-title .avatar img {
+  width: 100%;
+  height: 100%;
+}
+.chat-title h1  {
+  font-weight: normal;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+ <!-- .logout {
+    position: relative; 
+	background:#009688;
+    width: 100%;
+	text-align:right;
+	height:5%;
+	font-size:px;
+    padding: 10px 10px 10px 10px;
+} -->
+.logout a{
+    color: white;
+	font-size:10px;
+}
+
+.logout a:hover, .logout a:focus {
+    color: #f1f1f1;
+}
+
+.select-sim {
+  width:45px;
+  height:20px;
+  line-height:20px;
+  vertical-align:middle;
+  position:relative;
+  background: #D9D0F0;
+  color: #0E110F; border:1px solid #ccc;
+  overflow:hidden;
+}
+
+.select-sim::after {
+  content:"▼";
+  font-size:0.5em;
+  font-family:arial;
+  font-family:arial;
+  position:absolute;
+  top:50%;
+  right:5px;
+  background: #D9D0F0;
+  color: #0E110F; border:1px solid #ccc;
+ 
+  transform:translate(0, -50%);
+}
+
+.select-sim:hover::after {
+  content:"";
+}
+
+.select-sim:hover {
+  overflow:visible;
+}
+
+.select-sim:hover .options .option label {
+  display:inline-block;
+}
+
+.select-sim:hover .options {
+  
+  border:1px solid #ccc;
+  position:absolute;
+  
+  width:100%;
+  height:88px;
+  background: #D9D0F0;
+  color: #0E110F; border:1px solid #ccc;
+ 
+  overflow-y:auto;
+}
+
+.select-sim .options .option {
+  overflow:hidden;
+}
+
+.select-sim:hover .options .option {
+  height:20px;
+  overflow:hidden;
+}
+
+.select-sim .options .option img {
+  vertical-align:middle;
+}
+
+.select-sim .options .option label {
+  display:none;
+}
+
+.select-sim .options .option input {
+  width:0;
+  height:0;
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  float:left;
+  display:inline-block;
+  /* fix specific for Firefox */
+  position: absolute;
+  left: -10000px;
+}
+
+.select-sim .options .option input:checked + label {
+  display:block;
+  width:100%;
+}
+
+.select-sim:hover .options .option input + label {
+  display:block;
+}
+
+.select-sim:hover .options .option input:checked + label {
+  background:#fffff0;}
+  .demo-content{
+			background: none repeat scroll 0 0 #DADADA;
+			
+			width: 30px;
+			height: 10px;
+			margin:0px auto;
+		}
+#documentframe {
+    width: 20px;
+    height: 10px;
+    border: 0;
+
+   zoom: 10;
+
+-moz-transform: scale(0.45);
+-moz-transform-origin: 0 0;
+-o-transform: scale(0.95);
+-o-transform-origin: 0 10;
+-webkit-transform: scale(1.05);
+-webkit-transform-origin: 0 0;
+
+}
+  
+  </style>
+  <script type="text/javascript" charset="utf-8">
+   
+     $(document).ready(function() {
+	
+            $('.message-submit').click(function() {
+                msg = $('#message-input').val();
+				if(msg !== null && msg !== '') {
+                $.ajax({
+                    'type'     : 'POST',
+                    'url'      : '/put/{{room}}/{{uid}}',
+                    'data'     : { 'message': msg },
+                    'dataType' : 'json',
+                });
+                $("#message-input").val('');
+                $("#message-input").focus();
+               
+				}
+            });
+			$(window).on('keydown', function(e) {
+				if (e.which == 13) {
+				msg = $('#message-input').val();
+				if(msg !== null && msg !== '') {
+                $.ajax({
+                    'type'     : 'POST',
+                    'url'      : '/put/{{room}}/{{uid}}',
+                    'data'     : { 'message': msg },
+                    'dataType' : 'json',
+                });
+                $("#message-input").val('');
+                $("#message-input").focus();
+                e.preventDefault
+				}
+				
+				return false;
+			  }
+			})
+
+            var longPoll = function() {
+              return $.ajax({
+                type: "POST",
+                url: "/poll/" + "{{uid}}",
+                async: true,
+                cache: false,
+                timeout: 100000,
+                success: function(reply) {
+                  var a = ""+"{{uid}}";
+				var b =String(reply['user']);
+					var c =String(reply['check']);
+					var d="You";
+					if (c=="true"){
+					
+						if(a==b){
+					$('<div class="message message-personal">' + reply['msg'] + '</div>').appendTo($('.mCSB_container')).addClass('new');
+					setDate(d);
+					updateScrollbar();
+						}else{
+					$('<div class="message new" >' + reply['msg'] + '</div>').appendTo($('.mCSB_container')).addClass('new');
+					setDate(reply['user']);
+					updateScrollbar();
+				  }}
+				  else{
+				  if(a==b){
+				  $('<div class="message message-personal">' + reply['msg'] + '</div>').appendTo($('.mCSB_container')).addClass('new');
+				  setDate('Fantain Bot');
+					updateScrollbar();
+				  }}
+                  return longPoll();
+                },
+                dataType: 'json'
+              });
+            };
+
+            longPoll();
+
+        });
+
+
+
+  function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+  
+ function closeCall() {
+    document.getElementById("myCall").style.height = "0%";
+}
+  
+
+  
+ $(function() {
+    $('#submit').change(function() {
+        event.preventDefault();
+        var form_name= $('#submit').val().replace(/C:\\fakepath\\/i, '');
+        var form_data = new FormData($('#uploadform')[0]);
+        var path ="/static/upload/"
+        var path_for_upload= path+form_name
+$('<div class="message loading new"><figure class="avatar"><img src="/static/res/265668.svg"/></figure><span></span></div>').appendTo($('.mCSB_container'));
+        
+       $.ajax({
+            type: 'POST',
+            url: '/uploadajax',
+            data: form_data,
+            contentType: false,
+            processData: false,
+            dataType: 'json'
+        }).done(function(upldfile, textStatus, jqXHR){
+            
+      $('<div class="message message-personal"><div id="documentview"><iframe id="documentframe" src="/static/upload/'+upldfile['text']+'"style=" max-width: 210px;max-height :100px;"></iframe></div></div>').appendTo($('.mCSB_container')).addClass('new');
+        $('<div class="message loading new"><figure class="avatar"><img src="/static/res/265668.svg"/></figure><span></span></div>').appendTo($('.mCSB_container'));
+        $('.message.loading').remove();
+        $('<div class="message new"><figure class="avatar"><img src="/static/res/265668.svg"/></figure>' + 'Your file is attached' + '</div>').appendTo($('.mCSB_container')).addClass('new');
+
+        }).fail(function(data){
+       });
+
+            
+      
+        
+           updateScrollbar();
+
+    });
+});
+
+</script>
+	</head>
+
+	<body onload="init()" id="page_body">
+
+<div class="chat">
+	<!-- <div class="logout">
+			<a href="/logout">Logout</a>
+	</div>  -->
+	
+    <div class="chat-title">
+	
+	
+		<div id="myNav" class="overlay">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<div class="overlay-content">
+					<image id="mymic" src="/static/res/mic1.png" width="30px" height="30px" align="bottom">
+	
+		
+						<div class="spinner">
+								<div class="bounce1"></div>
+								<div class="bounce2"></div>
+								<div class="bounce3"></div>
+						</div>
+					</image>
+
+				</div>
+		</div>
+		
+		<div id="myCall" class="overlay1">
+		    <a href="javascript:void(0)" class="closebtn1" onclick="closeCall()">&times;</a>
+				<div class="overlay1-content">
+							<h5>Calling</h5>
+							<h6>(251) 546-9442<h6> 
+							<div style="display: inline" class="callaccept">
+									<image src="/static/res/call_accept.png" width="30px" height="30px" align="left" >
+							</div>
+							<div style="display: inline" class="calldecline">
+									<image src="/static/res/call_decline.png" width="30px" height="30px" >
+							</div>	
+							
+				</div>
+		</div>
+		
+		
+		<h1>&nbsp&nbspALAN&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1> 
+			<div class="demo-content"  style="float:right; "> <!-- position:relative; top:-8px; left:100px; -->
+					    
+						<select id="demo-htmlselect-basic" class ="select_opt" >
+						    	<option  data-imagesrc="/static/res/uk.png" value="English"></option>
+                                
+								<option  data-imagesrc="/static/res/italy.jpg" value="Italian"></option>
+								<option  data-imagesrc="/static/res/japan.png" value="Japanese"></option>
+								<option  data-imagesrc="/static/res/germany.png" value="German"></option>
+								<option  data-imagesrc="/static/res/france.png" value="French"></option>
+						</select>
+			</div>
+		<h2>&nbsp&nbspApplication Level One Support&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h2> 
+		<figure class="avatar">
+			<img src="/static/res/265668.svg" />
+		</figure>
+	</div>
+	<div class="messages">
+			<div class="messages-content">
+					<div id="idm" class="message new"><figure class="avatar"><img src="/static/res/265668.svg" /></figure> {{data}} 
+					     
+					</div>
+					
+			</div>
+	</div>
+	<div class="message-box">
+				<textarea type="text" id="message-input" placeholder="Type your query..." ></textarea>
+					<div style="display: inline" class="button1">
+							<button type="submit" class="message-speech" >
+									<img src="/static/res/mic1.png" width="25" height="25"/>
+							</button>
+					</div>
+					
+					<div style="display: inline" class="image-upload">
+							<label for="submit">
+									<img src="/static/res/attachment.svg" width="25" height="25"/>
+							</label>
+							<form id="uploadform" method="post" enctype="multipart/form-data">
+									<input name="file" type="file" id="submit" >
+							</form>
+					</div>
+        
+					<div style="display: inline" class="button3">
+							<button type="submit" class="call" >
+									<img src="/static/res/call1.png" width="23" height="23"/>
+							</button>
+					</div>
+					
+					<div style="display: inline" class="button4"> 
+							<button type="submit" >
+									<img src="/static/res/emoji1.png" width="25" height="25"/>
+							</button>
+					
+					</div>
+					
+					<div style="display: inline" class="send">
+							<button type="submit" class="message-submit"> 
+									Send
+							</button>
+							
+					</div>
+	</div>
+        <font size="1px" color="#BDBDBD" > <div style="background:#00695C;"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbspPowered By: 
+			   Tata Consultancy Services(Life Sciences)</div> 
+		</font> 
+</div>
+		<div id ="Footer" ><p>&copy; Tata Consultancy Services</p>
+		</div>
+
+		<div class="bg"> 
+		</div>
+
+		<script src='/static/js/jquery.min.js'></script>
+		<script src='/static/js/jquery.mCustomScrollbar.concat.min.js'></script>
+
+		<script src="/static/js/index.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.ddslick.min.js"></script>
+		<script type="text/javascript" src="/static/js/script.js"></script>
+ </body>
+</html>
+
